@@ -1,0 +1,69 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // Make sure to set this in your .env file
+}
+
+model RoomBooking {
+  id           Int      @id @default(autoincrement())
+  fullName     String
+  cid          String
+  roomType     String
+  checkInDate  DateTime
+  guests       Int
+  special      String?
+  createdAt    DateTime @default(now())
+}
+
+model EventBooking {
+  id         Int      @id @default(autoincrement())
+  fullName   String
+  cid        String
+  eventType  String
+  eventDate  DateTime
+  guests     Int
+  special    String?
+  createdAt  DateTime @default(now())
+}
+
+model DiningBooking {
+  id         Int      @id @default(autoincrement())
+  fullName   String
+  cid        String
+  diningType String
+  date       DateTime
+  time       String
+  guests     Int
+  special    String?
+  createdAt  DateTime @default(now())
+}
+
+model Event {
+  id        Int      @id @default(autoincrement())
+  title     String
+  date      DateTime
+  desc      String
+  imageUrl  String
+  createdAt DateTime @default(now())
+}
+
+model GalleryImage {
+  id        Int      @id @default(autoincrement())
+  url       String
+  createdAt DateTime @default(now())
+}
+
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String
+  password String
+  role     String
+  contact  String
+}
