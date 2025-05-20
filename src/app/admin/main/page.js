@@ -335,27 +335,38 @@ export default function AdminPage() {
     setLoading(true);
     try {
       const response = await fetch('/api/roomBooking');
-      if (!response.ok) throw new Error('Failed to fetch rooms');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       setRooms(data);
     } catch (error) {
       console.error('Error fetching rooms:', error);
-      setMessage('❌ Error fetching room bookings');
-      setTimeout(() => setMessage(''), 3000);
+      setRooms([]); // Set empty array on error
+      setMessage(`❌ ${error.message || 'Error fetching room bookings'}`);
     } finally {
       setLoading(false);
+      setTimeout(() => setMessage(''), 3000);
     }
   };
 
   const fetchEvents = async () => {
+    setLoading(true);
     try {
-      const response = await fetch('/api/admin/displayevent');
-      if (!response.ok) throw new Error('Failed to fetch events');
+      const response = await fetch('/api/eventBooking');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || `HTTP error! status: ${response.status}`);
+      }
       const data = await response.json();
       setEvents(data);
     } catch (error) {
       console.error('Error fetching events:', error);
-      setMessage('❌ Error fetching event bookings');
+      setEvents([]); // Set empty array on error
+      setMessage(`❌ ${error.message || 'Error fetching event bookings'}`);
+    } finally {
+      setLoading(false);
       setTimeout(() => setMessage(''), 3000);
     }
   };
@@ -502,30 +513,52 @@ export default function AdminPage() {
   const [images, setImages] = useState([]);
 
   const fetchImages = async () => {
-    const res = await fetch("/api/photos");
-    const data = await res.json();
-    setImages(data);
+    try {
+      const response = await fetch('/api/photos');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setImages(data);
+    } catch (error) {
+      console.error('Error fetching images:', error);
+      setImages([]); // Set empty array on error
+      setMessage('❌ Error fetching gallery images');
+      setTimeout(() => setMessage(''), 3000);
+    }
   };
 
   useEffect(() => {
-    fetchImages();
-  }, []);
+    if (activeTab === 'manageGallery') {
+      fetchImages();
+    }
+  }, [activeTab]);
 
   const handle_Submit = async (e) => {
     e.preventDefault();
+    try {
+      const response = await fetch('/api/photos', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url }),
+      });
 
-    const res = await fetch("/api/photos", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ url }),
-    });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to upload image');
+      }
 
-    if (res.ok) {
-      setsMessage("Image uploaded successfully!");
-      setUrl("");
-      fetchImages();
-    } else {
-      setsMessage("Failed to upload image.");
+      const data = await response.json();
+      setMessage('✅ Image uploaded successfully');
+      setUrl('');
+      fetchImages(); // Refresh the images list
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      setMessage(`❌ ${error.message || 'Error uploading image'}`);
+    } finally {
+      setTimeout(() => setMessage(''), 3000);
     }
   };
 
@@ -547,23 +580,33 @@ export default function AdminPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('/api/events', {
+      const response = await fetch('/api/events', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(eventData),
+        body: JSON.stringify({
+          title: eventData.title,
+          date: eventData.date,
+          desc: eventData.desc,
+          imageUrl: eventData.imageUrl
+        }),
       });
 
-      if (res.ok) {
-        alert("Event added successfully");
-        setEventData({ title: '', date: '', desc: '', imageUrl: '' });
-      } else {
-        alert("Failed to add event");
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to add event');
       }
-    } catch (err) {
-      console.error(err);
-      alert("Error submitting event");
+
+      const data = await response.json();
+      setMessage('✅ Event added successfully');
+      setEventData({ title: '', date: '', desc: '', imageUrl: '' });
+      fetchEvents(); // Refresh the events list
+    } catch (error) {
+      console.error('Error submitting event:', error);
+      setMessage(`❌ ${error.message || 'Error submitting event'}`);
+    } finally {
+      setTimeout(() => setMessage(''), 3000);
     }
   };
 

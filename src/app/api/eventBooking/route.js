@@ -43,3 +43,27 @@ export async function POST(request) {
     });
   }
 }
+
+export async function GET() {
+  try {
+    const events = await prisma.eventBooking.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+    return new Response(JSON.stringify(events), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  } catch (error) {
+    console.error('Error fetching events:', error);
+    return new Response(JSON.stringify({ error: 'Failed to fetch events' }), {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+}
