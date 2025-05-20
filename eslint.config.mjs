@@ -9,7 +9,6 @@ const compat = new FlatCompat({
   baseDirectory: __dirname,
 });
 
-// Extend next/core-web-vitals and override the rule
 const eslintConfig = [
   ...compat.extends("next/core-web-vitals"),
   {
