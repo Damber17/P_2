@@ -243,7 +243,6 @@ export default function HomePage() {
   "https://th.bing.com/th/id/OIP.eq7a98uejSg7GqtFjN7HFwHaFc?w=275&h=202&c=7&r=0&o=5&dpr=1.1&pid=1.7"
 ];
 
-const ImageSlideshow = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -253,7 +252,6 @@ const ImageSlideshow = () => {
 
     return () => clearInterval(timer);
   }, []);
-}
 
   return (
     <>
