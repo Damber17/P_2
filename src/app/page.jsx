@@ -228,7 +228,6 @@ export default function HomePage() {
       });
     }
   }, []);
-  import { useEffect, useState } from "react";
 
 const HotelGallery = () => {
   const images = [
