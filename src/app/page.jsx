@@ -276,6 +276,9 @@ export default function HomePage() {
           transition: 'opacity 1s ease-in-out',
         }}
       />
+   <div style={{position: 'absolute',top:'0',left:'0',backgroundColor:'white'}}>
+     what the fuck bro
+   </div>
     </section>
 
         <form className="booking-form" style={{ display: 'none' }}>
