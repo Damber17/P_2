@@ -229,6 +229,29 @@ export default function HomePage() {
     }
   }, []);
 
+  const images = [
+  "https://th.bing.com/th/id/OIP.Dsnj_qYgbqDBAqHzefi6HgHaEL?w=249&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.L7J0xpC0zEVmt3TCAsfjRgHaEe?w=267&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.qhDkOvbVXX16YZE_ryh57gHaE8?w=241&h=181&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.WnmlG44gUdsVzV7s3l_euwHaE7?w=286&h=191&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.Vo3ZrDwx2jOblL_hhRpzFwHaEc?w=309&h=185&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.m9iZn8qf8Ih5642lYBVAJAHaFj?w=201&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.PZ5L4s7wQiWhU4ewb6tBugHaE8?w=296&h=198&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.pCpmCHnT3Y2GtWmxI79biQHaFj?w=197&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.lMu98Yn__M_xiDI7R7cWIAHaEn?w=235&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+  "https://th.bing.com/th/id/OIP.eq7a98uejSg7GqtFjN7HFwHaFc?w=275&h=202&c=7&r=0&o=5&dpr=1.1&pid=1.7"
+];
+
+const ImageSlideshow = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 3000); // Change every 3 seconds
+
+    return () => clearInterval(timer);
+  }, []);
 
 
   return (
@@ -236,40 +259,25 @@ export default function HomePage() {
       <main>
         <h1>WELCOME TO THE HOTEL</h1>
        
- <section className="hotel-gallery">
-          <div className="gallery">
-            <div className="image-card">
-              <img src="https://th.bing.com/th/id/OIP.Dsnj_qYgbqDBAqHzefi6HgHaEL?w=249&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Image 1" />
-            </div>
-            <div className="image-card">
-              <img src="https://th.bing.com/th/id/OIP.L7J0xpC0zEVmt3TCAsfjRgHaEe?w=267&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Image 2" />
-            </div>
-            <div className="image-card">
-              <img src="https://th.bing.com/th/id/OIP.qhDkOvbVXX16YZE_ryh57gHaE8?w=241&h=181&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Image 3" />
-            </div>
-            <div className="image-card">
-              <img src="https://th.bing.com/th/id/OIP.WnmlG44gUdsVzV7s3l_euwHaE7?w=286&h=191&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Image 4" />
-            </div>
-            <div className="image-card">
-              <img src="https://th.bing.com/th/id/OIP.Vo3ZrDwx2jOblL_hhRpzFwHaEc?w=309&h=185&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Image 5" />
-            </div>
-            <div className="image-card">
-              <img src="https://th.bing.com/th/id/OIP.m9iZn8qf8Ih5642lYBVAJAHaFj?w=201&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Image 6" />
-            </div>
-            <div className="image-card">
-              <img src="https://th.bing.com/th/id/OIP.PZ5L4s7wQiWhU4ewb6tBugHaE8?w=296&h=198&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Image 7" />
-            </div>
-            <div className="image-card">
-              <img src="https://th.bing.com/th/id/OIP.pCpmCHnT3Y2GtWmxI79biQHaFj?w=197&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Image 8" />
-            </div>
-            <div className="image-card">
-              <img src="https://th.bing.com/th/id/OIP.lMu98Yn__M_xiDI7R7cWIAHaEn?w=235&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Image 9" />
-            </div>
-            <div className="image-card">
-              <img src="https://th.bing.com/th/id/OIP.eq7a98uejSg7GqtFjN7HFwHaFc?w=275&h=202&c=7&r=0&o=5&dpr=1.1&pid=1.7" alt="Image 10" />
-            </div>
-          </div>
-        </section>
+ <section
+      style={{
+        position: 'relative',
+        width: '100%',
+        height: '100vh',
+        overflow: 'hidden',
+      }}
+    >
+      <img
+        src={images[currentIndex]}
+        alt={`Slide ${currentIndex + 1}`}
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'cover',
+          transition: 'opacity 1s ease-in-out',
+        }}
+      />
+    </section>
 
         <form className="booking-form" style={{ display: 'none' }}>
           <h3>Book a Room</h3>
