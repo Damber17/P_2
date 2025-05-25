@@ -1,4 +1,4 @@
-"use client";
+g"use client";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { useEffect, useState } from 'react';
@@ -262,7 +262,9 @@ export default function HomePage() {
     style={{
       width: '100%',
       height: '100vh',
-      objectFit: 'cover'
+      objectFit: 'cover',
+      position: 'absolute'
+      zIndex: 1,
     }}
   />
 
