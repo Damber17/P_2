@@ -241,7 +241,7 @@ export default function HomePage() {
     "https://th.bing.com/th/id/OIP.eq7a98uejSg7GqtFjN7HFwHaFc?w=275&h=202&c=7&r=0&o=5&dpr=1.1&pid=1.7"
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -251,7 +251,7 @@ export default function HomePage() {
     }, 4000); // 4 seconds
     return () => clearInterval(interval);
   }, [images.length]);
-
+  
 <section className="hotel-gallery" style={{ position: 'relative', overflow: 'hidden' }}>
       <div className="gallery-slider" style={{ transition: 'transform 0.5s ease-in-out' }}>
         <img
@@ -263,6 +263,26 @@ export default function HomePage() {
             objectFit: 'cover'
           }}
         />
+      </div>
+
+      {/* Message Overlay */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          color: '#fff',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          padding: '20px 40px',
+          borderRadius: '10px',
+          fontSize: '1.5rem',
+          textAlign: 'center',
+          maxWidth: '90%',
+          zIndex: 1
+        }}
+      >
+        Enjoy your stay at the hotel. We hope to provide you with the best services and facilities and a good memory to reflect on.
       </div>
     </section>
   return (
