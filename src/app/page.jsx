@@ -228,6 +228,7 @@ export default function HomePage() {
       });
     }
   }, []);
+  
 
   const images = [
   "https://th.bing.com/th/id/OIP.Dsnj_qYgbqDBAqHzefi6HgHaEL?w=249&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
@@ -252,7 +253,7 @@ const ImageSlideshow = () => {
 
     return () => clearInterval(timer);
   }, []);
-
+}
 
   return (
     <>
