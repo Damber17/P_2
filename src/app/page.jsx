@@ -263,7 +263,7 @@ export default function HomePage() {
       width: '100%',
       height: '100vh',
       objectFit: 'cover',
-      position: 'absolute'
+      position: 'absolute',
       zIndex: 1,
     }}
   />
