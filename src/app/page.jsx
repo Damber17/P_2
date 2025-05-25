@@ -228,6 +228,9 @@ export default function HomePage() {
       });
     }
   }, []);
+  import { useEffect, useState } from "react";
+
+const HotelGallery = () => {
   const images = [
     "https://th.bing.com/th/id/OIP.Dsnj_qYgbqDBAqHzefi6HgHaEL?w=249&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
     "https://th.bing.com/th/id/OIP.L7J0xpC0zEVmt3TCAsfjRgHaEe?w=267&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
@@ -241,53 +244,66 @@ export default function HomePage() {
     "https://th.bing.com/th/id/OIP.eq7a98uejSg7GqtFjN7HFwHaFc?w=275&h=202&c=7&r=0&o=5&dpr=1.1&pid=1.7"
   ];
 
-   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 4000); // 4 seconds
+    }, 4000);
     return () => clearInterval(interval);
-  }, [images.length]);
-  
-<section
-  className="hotel-gallery"
-  style={{ position: 'relative', overflow: 'hidden', height: '100vh' }}
->
-  <img
-    src={images[currentIndex]}
-    alt={`Image ${currentIndex + 1}`}
-    style={{
-      width: '100%',
-      height: '100vh',
-      objectFit: 'cover',
-      position: 'absolute',
-      zIndex: 1,
-    }}
-  />
+  }, []);
 
-  {/* This overlay message */}
-  <div
-    style={{
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      color: '#fff',
-      backgroundColor: 'rgba(0, 0, 0, 0.6)',
-      padding: '20px 40px',
-      borderRadius: '10px',
-      fontSize: '1.5rem',
-      textAlign: 'center',
-      maxWidth: '90%',
-      zIndex: 10 // ✅ Ensure it's on top
-    }}
-  >
-    Enjoy your stay at the hotel. We hope to provide you with the best services and facilities and a good memory to reflect on.
-  </div>
-</section>
+  return (
+    <section
+      className="hotel-gallery"
+      style={{
+        position: "relative",
+        width: "100%",
+        height: "100vh",
+        overflow: "hidden",
+      }}
+    >
+      <img
+        src={images[currentIndex]}
+        alt={`Image ${currentIndex + 1}`}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 1,
+        }}
+      />
+
+      {/* Overlay message */}
+      <div
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          color: "#fff",
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          padding: "20px 40px",
+          borderRadius: "10px",
+          fontSize: "1.5rem",
+          textAlign: "center",
+          maxWidth: "90%",
+          zIndex: 2, // ✅ Ensure it's higher than image
+        }}
+      >
+        Enjoy your stay at the hotel. We hope to provide you with the best
+        services and facilities and a good memory to reflect on.
+      </div>
+    </section>
+  );
+};
+
+export default HotelGallery;
 
   return (
     <>
