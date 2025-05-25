@@ -262,7 +262,7 @@ export default function HomePage() {
       style={{
         position: 'relative',
         width: '100%',
-        height: '100vh',
+        height: '70vh',
         overflow: 'hidden',
       }}
     >
@@ -271,7 +271,7 @@ export default function HomePage() {
         alt={`Slide ${currentIndex + 1}`}
         style={{
           width: '100%',
-          height: '70%',
+          height: '100%',
           objectFit: 'cover',
           transition: 'opacity 1s ease-in-out',
         }}
