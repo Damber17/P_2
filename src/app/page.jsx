@@ -276,7 +276,7 @@ export default function HomePage() {
           transition: 'opacity 1s ease-in-out',
         }}
       />
-   <div style={{position: 'absolute',top:'50%',left:'50%',backgroundColor:'white'}}>
+   <div style={{position: 'absolute',top:'50%',left:'50%',backgroundColor:'rgba(0, 0, 0, 0.53)',fontSize:'2vw',padding:'1vw'}}>
      what the fuck bro
    </div>
     </section>
