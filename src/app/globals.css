@@ -13,14 +13,14 @@ body {
 
 .hotel-gallery {
   width: 100%;
-  height: 100vh;
+  height: 70vh;
   position: relative;
   overflow: hidden;
 }
 
 .hotel-gallery img {
   width: 100%;
-  height: 100vh;
+  height: 70vh;
   object-fit: cover;
   transition: opacity 0.5s ease-in-out;
 }
