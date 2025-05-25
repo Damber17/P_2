@@ -49,6 +49,30 @@ function ReviewSection() {
       document.getElementById('success-message').style.display = 'none';
     }, 3000);
   };
+  const images = [
+    "https://th.bing.com/th/id/OIP.Dsnj_qYgbqDBAqHzefi6HgHaEL?w=249&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "https://th.bing.com/th/id/OIP.L7J0xpC0zEVmt3TCAsfjRgHaEe?w=267&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "https://th.bing.com/th/id/OIP.qhDkOvbVXX16YZE_ryh57gHaE8?w=241&h=181&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "https://th.bing.com/th/id/OIP.WnmlG44gUdsVzV7s3l_euwHaE7?w=286&h=191&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "https://th.bing.com/th/id/OIP.Vo3ZrDwx2jOblL_hhRpzFwHaEc?w=309&h=185&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "https://th.bing.com/th/id/OIP.m9iZn8qf8Ih5642lYBVAJAHaFj?w=201&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "https://th.bing.com/th/id/OIP.PZ5L4s7wQiWhU4ewb6tBugHaE8?w=296&h=198&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "https://th.bing.com/th/id/OIP.pCpmCHnT3Y2GtWmxI79biQHaFj?w=197&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "https://th.bing.com/th/id/OIP.lMu98Yn__M_xiDI7R7cWIAHaEn?w=235&h=180&c=7&r=0&o=5&dpr=1.1&pid=1.7",
+    "https://th.bing.com/th/id/OIP.eq7a98uejSg7GqtFjN7HFwHaFc?w=275&h=202&c=7&r=0&o=5&dpr=1.1&pid=1.7"
+  ];
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 4000); // 4 seconds
+    return () => clearInterval(interval);
+  }, [images.length]);
+
 
   return (
     <>
