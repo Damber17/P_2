@@ -252,39 +252,41 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, [images.length]);
   
-<section className="hotel-gallery" style={{ position: 'relative', overflow: 'hidden' }}>
-      <div className="gallery-slider" style={{ transition: 'transform 0.5s ease-in-out' }}>
-        <img
-          src={images[currentIndex]}
-          alt={`Image ${currentIndex + 1}`}
-          style={{
-            width: '100%',
-            height: '100vh',
-            objectFit: 'cover'
-          }}
-        />
-      </div>
+<section
+  className="hotel-gallery"
+  style={{ position: 'relative', overflow: 'hidden', height: '100vh' }}
+>
+  <img
+    src={images[currentIndex]}
+    alt={`Image ${currentIndex + 1}`}
+    style={{
+      width: '100%',
+      height: '100vh',
+      objectFit: 'cover'
+    }}
+  />
 
-      {/* Message Overlay */}
-      <div
-        style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          color: '#fff',
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
-          padding: '20px 40px',
-          borderRadius: '10px',
-          fontSize: '1.5rem',
-          textAlign: 'center',
-          maxWidth: '90%',
-          zIndex: 1
-        }}
-      >
-        Enjoy your stay at the hotel. We hope to provide you with the best services and facilities and a good memory to reflect on.
-      </div>
-    </section>
+  {/* This overlay message */}
+  <div
+    style={{
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      color: '#fff',
+      backgroundColor: 'rgba(0, 0, 0, 0.6)',
+      padding: '20px 40px',
+      borderRadius: '10px',
+      fontSize: '1.5rem',
+      textAlign: 'center',
+      maxWidth: '90%',
+      zIndex: 10 // ✅ Ensure it's on top
+    }}
+  >
+    Enjoy your stay at the hotel. We hope to provide you with the best services and facilities and a good memory to reflect on.
+  </div>
+</section>
+
   return (
     <>
       <main>
