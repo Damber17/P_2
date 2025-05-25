@@ -276,8 +276,8 @@ export default function HomePage() {
           transition: 'opacity 1s ease-in-out',
         }}
       />
-   <div style={{position: 'absolute',top:'50%',left:'50%',backgroundColor:'rgba(0, 0, 0, 0.53)',fontSize:'2vw',padding:'1vw'}}>
-     what the fuck bro
+   <div style={{position: 'absolute',top:'50%',left:'50%',backgroundColor:'rgba(0, 0, 0, 0.33)',fontSize:'2vw',padding:'1vw'}}>
+     Enjoy your stay at our hotel.  we hope to provide you with the best facilities and an amazing experience adding to your good memories.
    </div>
     </section>
 
